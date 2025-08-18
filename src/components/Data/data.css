@@ -1,12 +1,129 @@
-.formlist{
-    color: tomato;
+/* Data Render Container */
+.formlist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
+  background: transparent; /* Transparent to show grid */
+  min-height: calc(100vh - 50px); /* Full height to show grid */
 }
 
-.formlist {
-    padding: 0px 80px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    overflow:none;
-    justify-content: center;
+/* Data Card */
+.formlist .form-box {
+  background-color: var(--surface);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+}
+
+.formlist .form-box::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--success), #2ea043);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.formlist .form-box:hover::after {
+  transform: scaleX(1);
+}
+
+.formlist .form-box:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--success);
+}
+
+.formlist .form-box h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formlist .form-box h2::before {
+  content: '📊';
+  font-size: 20px;
+}
+
+.formlist .form-box p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formlist .form-box p::before {
+  content: '📝';
+  opacity: 0.7;
+}
+
+/* Submission Count Badge */
+.formlist .form-box p {
+  background-color: var(--bg-secondary);
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  border: 1px solid var(--border-primary);
+}
+
+/* Empty State */
+.formlist:empty::after {
+  content: 'No submissions yet. Fill out some forms to see data here!';
+  display: block;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  grid-column: 1 / -1;
+}
+
+/* Loading Animation */
+.formlist.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.formlist.loading::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-primary);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formlist {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px 0;
   }
+  
+  .formlist .form-box {
+    min-height: 120px;
+  }
+}
