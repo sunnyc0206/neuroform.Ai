@@ -14,11 +14,17 @@ A modern, AI-powered form builder application with natural language processing c
 
 ## Tech Stack
 
+<<<<<<< HEAD
 - **Frontend**: React 18 with Vite
 - **Styling**: CSS3 with CSS Variables for theming
 - **Storage**: IndexedDB (browser-based database)
 - **NLP**: Compromise.js for natural language processing
 - **Routing**: React Router DOM
+=======
+- **User**: "> "Create a form with name as text, age as number, and date of birth as date""
+- **Response: ** "> " ![image](https://github.com/user-attachments/assets/676b199f-90ae-4376-a66b-26c045f90e96)
+
+>>>>>>> d383c1c200cfe8db4182c65bdbf6880b5b155054
 
 ## Getting Started
 
