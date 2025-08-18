@@ -1,0 +1,482 @@
+/* Help Container */
+.help-container {
+  display: flex;
+  height: calc(100vh - 60px);
+  background-color: var(--bg-primary);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Help Sidebar */
+.help-sidebar {
+  width: 280px;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-primary);
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.help-sidebar h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+/* Help Navigation */
+.help-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.help-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.help-nav-item:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.help-nav-item.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+.nav-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.nav-label {
+  flex: 1;
+}
+
+/* Help Main Content */
+.help-main {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.help-content h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-primary);
+}
+
+.help-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.help-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+/* Guide Sections */
+.guide-section {
+  margin-bottom: 32px;
+}
+
+.guide-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.guide-list li {
+  margin-bottom: 20px;
+  padding-left: 32px;
+  position: relative;
+  counter-increment: step;
+}
+
+.guide-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: var(--primary);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.guide-list li strong {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.guide-list li p {
+  margin: 8px 0;
+}
+
+/* Code Examples */
+.code-example {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: var(--primary);
+  margin: 12px 0;
+}
+
+/* Feature List */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.feature-list li {
+  padding: 8px 0;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tables */
+.field-types-table,
+.shortcuts-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.field-types-table th,
+.shortcuts-table th {
+  background-color: var(--bg-tertiary);
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.field-types-table td,
+.shortcuts-table td {
+  padding: 12px;
+  border-top: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.field-types-table tr:hover,
+.shortcuts-table tr:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* Expandable Items */
+.expandable-item {
+  margin: 16px 0;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.expandable-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--bg-secondary);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.expandable-header:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.expand-icon {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Expandable Content - Fixed */
+.expandable-content {
+  padding: 16px;
+  background-color: var(--bg-primary);
+  animation: slideDown 0.3s ease;
+  overflow: hidden;
+}
+
+.expandable-content ul {
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.expandable-content ul li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.expandable-content ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Info Boxes */
+.info-box {
+  background-color: var(--bg-secondary);
+  border-left: 4px solid var(--primary);
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 4px;
+}
+
+.info-box.success {
+  border-left-color: var(--success);
+  background-color: var(--success-bg);
+}
+
+.info-box strong {
+  color: var(--text-primary);
+}
+
+/* Lists */
+.example-list,
+.action-list,
+.info-list,
+.validation-list,
+.tips-list,
+.browser-list {
+  list-style: none;
+  padding: 0;
+  padding-left: 20px;
+  margin: 16px 0;
+}
+
+.example-list li,
+.action-list li,
+.info-list li,
+.validation-list li,
+.tips-list li,
+.browser-list li {
+  padding: 8px 0;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.example-list li::before,
+.action-list li::before,
+.info-list li::before,
+.validation-list li::before,
+.tips-list li::before,
+.browser-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.example-list code {
+  background-color: var(--bg-tertiary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--primary);
+  font-size: 13px;
+}
+
+.validation-details {
+  margin: 16px 0;
+}
+
+.validation-details dt {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 12px;
+}
+
+.validation-details dd {
+  margin-left: 0;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  padding-left: 20px;
+}
+
+/* FAQ Section */
+.faq-section {
+  margin: 24px 0;
+}
+
+.faq-item {
+  margin-bottom: 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--bg-secondary);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.faq-question:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.faq-answer {
+  padding: 16px;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-primary);
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+/* Best Practices */
+.best-practices {
+  list-style: decimal;
+  padding-left: 20px;
+  margin: 16px 0;
+}
+
+.best-practices li {
+  padding: 8px 0;
+  color: var(--text-secondary);
+}
+
+/* Keyboard Shortcuts */
+kbd {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+/* Help Footer */
+.help-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-primary);
+  text-align: center;
+}
+
+.help-footer p {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.version-info {
+  font-size: 12px !important;
+  color: var(--text-muted) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .help-container {
+    flex-direction: column;
+  }
+  
+  .help-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-primary);
+    padding: 16px;
+  }
+  
+  .help-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .help-nav-item {
+    flex: 1;
+    min-width: 120px;
+    padding: 8px 12px;
+    justify-content: center;
+  }
+  
+  .nav-label {
+    display: none;
+  }
+  
+  .help-main {
+    padding: 16px;
+  }
+  
+  .field-types-table {
+    font-size: 12px;
+  }
+  
+  .field-types-table th,
+  .field-types-table td {
+    padding: 8px;
+  }
+} 
