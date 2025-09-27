@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import browserDB from "./Database/browserDB";
 import "./FormList.css";
+import toast from "react-hot-toast";
 
 const FormList = () => {
   const [forms, setForms] = useState([]);
@@ -61,30 +62,30 @@ const FormList = () => {
 
   const handleAddField = async () => {
     if (!newFieldName.trim()) {
-      alert("Please enter a field name");
+      toast.error("Please enter a field name");
       return;
     }
     
     // Validate field name format
     if (!/^[a-zA-Z][a-zA-Z0-9_\s]*$/.test(newFieldName.trim())) {
-      alert("Field name must start with a letter and contain only letters, numbers, underscores, and spaces");
+      toast.error("Field name must start with a letter and contain only letters, numbers, underscores, and spaces");
       return;
     }
     
     if (newFieldName.trim().length > 30) {
-      alert("Field name must be less than 30 characters");
+      toast.error("Field name must be less than 30 characters");
       return;
     }
 
     // Validate options for dropdown/radio
     if ((newFieldType === "dropdown" || newFieldType === "radiobutton")) {
       if (!newFieldOptions.trim()) {
-        alert("Please provide options for this field type");
+        toast.error("Please provide options for this field type");
         return;
       }
       const options = newFieldOptions.split(",").map(opt => opt.trim()).filter(opt => opt);
       if (options.length < 2) {
-        alert("Please provide at least 2 options");
+        toast.error("Please provide at least 2 options");
         return;
       }
     }
@@ -96,7 +97,7 @@ const FormList = () => {
       );
       
       if (existingField) {
-        alert(`Field "${newFieldName}" already exists in this form`);
+        toast.error(`Field "${newFieldName}" already exists in this form`);
         return;
       }
 
@@ -123,11 +124,11 @@ const FormList = () => {
       // Refresh forms list
       await fetchForms();
       
-      alert(`✅ Field "${newFieldName}" added successfully to "${formToUpdate.formIDname}"!`);
+      toast.success(`Field "${newFieldName}" added successfully to "${formToUpdate.formIDname}"!`);
       closeAddFieldModal();
     } catch (error) {
       console.error("Error adding field:", error);
-      alert("❌ Error adding field. Please try again.");
+      toast.error("Error adding field. Please try again.");
     }
   };
 
@@ -194,7 +195,7 @@ const FormList = () => {
       });
       
       if (missingRequired.length > 0) {
-        alert(`Please fill in the required fields: ${missingRequired.join(", ")}`);
+        toast.error(`Please fill in the required fields: ${missingRequired.join(", ")}`);
         setSubmitting(false);
         return;
       }
@@ -209,12 +210,12 @@ const FormList = () => {
       console.log("Submitting form data:", formDataToSubmit);
       await browserDB.collection("submissions").add(formDataToSubmit);
       
-      alert("✅ Form submitted successfully!");
+      toast.success("Form submitted successfully!");
       setSelectedForm(null);
       setFormData({});
     } catch (error) {
       console.error("Error submitting form data:", error);
-      alert("❌ Error submitting form. Please try again.");
+      toast.error("Error submitting form. Please try again.");
     } finally {
       setSubmitting(false);
     }

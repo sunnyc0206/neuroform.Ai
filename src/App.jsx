@@ -8,6 +8,7 @@ import Help from './components/Help';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from './context/ThemeContext';
 import BirdsBackground from './components/BirdsBackground';
+import { Toaster } from 'react-hot-toast';
 
 const AppContent = () => {
   const { theme, toggleTheme } = useTheme();
@@ -137,6 +138,7 @@ const App = () => {
       <Router>
         <AppContent />
     </Router>
+    <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import browserDB from "./Database/browserDB";
 import ConfirmationModal from "./ConfirmationModal.jsx";
 import "./DynamicForm.css";
+import toast from "react-hot-toast";
 
 const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName }) => {
   const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
@@ -70,7 +71,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
     // Validate field name
     const fieldNameError = validateFieldName(newFieldName);
     if (fieldNameError) {
-      alert(fieldNameError);
+      toast.error(fieldNameError);
       return;
     }
 
@@ -79,13 +80,13 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
       field => field.name.toLowerCase() === newFieldName.trim().toLowerCase()
     );
     if (isDuplicate) {
-      alert("A field with this name already exists");
+      toast.error("A field with this name already exists");
       return;
     }
 
     // Validate options for dropdown and radio
     if ((newFieldType === "dropdown" || newFieldType === "radiobutton") && !newFieldOptions.trim()) {
-      alert("Please provide options for " + newFieldType);
+      toast.error("Please provide options for " + newFieldType);
       return;
     }
 
@@ -118,7 +119,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
       if (name) {
         const error = validateFormName(name);
         if (error) {
-          alert(error);
+          toast.error(error);
           return;
         }
         setName(name);
@@ -134,7 +135,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
     }
     
     if (fields.length === 0) {
-      alert("Please add at least one field to the form");
+      toast.error("Please add at least one field to the form");
       return;
     }
     
@@ -164,7 +165,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
     try {
       // Validate form name first
       if (!Name || Name.trim().length === 0) {
-        alert("Please enter a form name");
+        toast.error("Please enter a form name");
         const nameInput = document.querySelector('.form-name-input');
         if (nameInput) nameInput.focus();
         return;
@@ -175,14 +176,14 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
       // Final validation with minimum 3 characters
       const nameError = validateFormName(formNameToUse);
       if (nameError) {
-        alert(nameError);
+        toast.error(nameError);
         const nameInput = document.querySelector('.form-name-input');
         if (nameInput) nameInput.focus();
         return;
       }
       
       if (fields.length === 0) {
-        alert("Cannot save a form without fields");
+        toast.error("Cannot save a form without fields");
         return;
       }
       
@@ -216,7 +217,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
         await browserDB.collection("forms").update(existingForm.id, updatedFormData);
         formId = existingForm.id;
         console.log("✅ Form updated successfully with ID:", formId);
-        alert(`✅ Form "${formNameToUse}" has been updated successfully!`);
+        toast.success(`✅ Form "${formNameToUse}" has been updated successfully!`);
         
       } else {
         // Create new form
@@ -237,8 +238,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
         const formDoc = await browserDB.collection("forms").add(formData);
         formId = formDoc.id;
         console.log("✅ New form created with ID:", formId);
-        alert(`✅ Form "${formNameToUse}" has been created successfully!`);
-        
+        toast.success(`✅ Form "${formNameToUse}" has been created successfully!`);
         // Close the modal after successful save
         if (window.closeFormPreview) {
           window.closeFormPreview();
@@ -304,7 +304,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
         const errorMessages = Object.entries(validationErrors)
           .map(([field, error]) => `${field}: ${error}`)
           .join("\n");
-        alert(`Please fix the following errors:\n${errorMessages}`);
+        toast.error(`Please fix the following errors:\n${errorMessages}`);
         return;
       }
 
@@ -341,7 +341,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
       
     } catch (error) {
       console.error("❌ Error saving form/submission:", error);
-      alert("❌ Error saving form. Check console for details.");
+      toast.error("❌Opps!Error saving form");
     }
   };
 
