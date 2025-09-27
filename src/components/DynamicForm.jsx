@@ -217,7 +217,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
         await browserDB.collection("forms").update(existingForm.id, updatedFormData);
         formId = existingForm.id;
         console.log("✅ Form updated successfully with ID:", formId);
-        toast.success(`✅ Form "${formNameToUse}" has been updated successfully!`);
+        toast.success(`Form "${formNameToUse}" has been updated successfully!`);
         
       } else {
         // Create new form
@@ -238,7 +238,7 @@ const DynamicForm = ({ formFields, formName, updateFormFields, updateFormName })
         const formDoc = await browserDB.collection("forms").add(formData);
         formId = formDoc.id;
         console.log("✅ New form created with ID:", formId);
-        toast.success(`✅ Form "${formNameToUse}" has been created successfully!`);
+        toast.success(`Form "${formNameToUse}" has been created successfully!`);
         // Close the modal after successful save
         if (window.closeFormPreview) {
           window.closeFormPreview();
